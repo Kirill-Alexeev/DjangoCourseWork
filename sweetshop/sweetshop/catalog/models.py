@@ -9,7 +9,7 @@ class Cake(models.Model):
     id = models.IntegerField(primary_key=True, help_text="Уникальный ID для торта")
     title = models.CharField(max_length=200, help_text="Название торта")
     weight = models.CharField(max_length=10, help_text="Вес торта в граммах")
-    description = models.TextField(max_length=1000, help_text="Описание для торта")
+    description = models.TextField(max_length=2000, help_text="Описание для торта")
     image_id = models.ForeignKey("Image", on_delete=models.SET_NULL, null=True)
     price = models.CharField(max_length=10, help_text="Цена торта в рублях")
     created_at = models.DateField(null=True, blank=True)
@@ -60,7 +60,7 @@ class Order(models.Model):
     def __str__(self):
         '''Строка для представления объекта модели'''
 
-        return self.id
+        return str(self.id)
 
     def get_absolute_url(self):
         '''Возвращает url для доступа к определённому заказу'''
@@ -87,7 +87,7 @@ class Client(models.Model):
     def __str__(self):
         '''Строка для представления объекта модели'''
 
-        return f"{self.last_name}, {self.first_name}"
+        return f"{self.last_name}, {self.first_name} {self.middle_name}"
 
     def get_absolute_url(self):
         '''Возвращает url для доступа к определённому клиенту'''
@@ -111,7 +111,7 @@ class Review(models.Model):
     def __str__(self):
         '''Строка для представления объекта модели'''
 
-        return self.id
+        return str(self.id)
 
     def get_absolute_url(self):
         '''Возвращает url для доступа к определённому клиенту'''
