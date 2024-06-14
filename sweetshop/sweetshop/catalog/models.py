@@ -12,6 +12,7 @@ class Cake(models.Model):
     description = models.TextField(max_length=2000, help_text="Описание для торта")
     image_id = models.ForeignKey("Image", on_delete=models.SET_NULL, null=True)
     price = models.CharField(max_length=10, help_text="Цена торта в рублях")
+    ingredient = models.ManyToManyField('Ingredient', help_text="Выберите ингредиенты")
     created_at = models.DateField(null=True, blank=True)
     updated_at = models.DateField(null=True, blank=True)
 
@@ -114,9 +115,9 @@ class Review(models.Model):
         return str(self.id)
 
     def get_absolute_url(self):
-        '''Возвращает url для доступа к определённому клиенту'''
+        '''Возвращает url для доступа к определённому отзыву'''
         
-        return reverse("client-detail", args=[str(self.id)])
+        return reverse("review-detail", args=[str(self.id)])
 
 
 class Image(models.Model):
@@ -126,3 +127,35 @@ class Image(models.Model):
     alt = models.CharField(max_length=100, help_text="Альтернативное расписание для картинки")
     path = models.CharField(max_length=200, help_text="Путь до картинки")
     created_at = models.DateField(null=True, blank=True)
+
+    class Meta:
+        ordering = ['id']
+
+    def __str__(self):
+        '''Строка для представления объекта модели'''
+
+        return self.alt
+
+
+class Ingredient(models.Model):
+    '''Модель представляющая ингредиенты для тортов'''
+
+    id = models.IntegerField(primary_key=True, help_text="Уникальный ID для ингредиента")
+    title = models.CharField(max_length=200, help_text="Название ингредиента")
+    units = models.CharField(max_length=50, help_text="Название единиц измерения")
+    count = models.IntegerField(help_text="Количество ингредиента")
+    created_at = models.DateField(null=True, blank=True)
+    updated_at = models.DateField(null=True, blank=True)
+
+    class Meta:
+        ordering = ['id']
+
+    def __str__(self):
+        '''Строка для представления объекта модели'''
+
+        return self.title
+    
+    def get_absolute_url(self):
+        '''Возвращает url для доступа к определённому ингредиенту'''
+        
+        return reverse("ingredient-detail", args=[str(self.id)])
