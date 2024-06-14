@@ -1,0 +1,52 @@
+{% extends "base_generic.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="start">
+    <h1 class="start__headline">Кондитерская "Brioche"</h1>
+</div>
+
+<div class="about">
+    <h2 class="about__headline">О нас</h2>
+    <p class="about__paragraf">Кондитерская — уютное заведение, где вы сможете насладиться разнообразными сладостями и
+        напитками. У нас представлен широкий ассортимент выпечки, десертов и напитков, созданных с любовью и заботой о
+        каждом госте. Мы предлагаем обслуживание на высшем уровне и индивидуальный подход к каждому клиенту. Наши гости
+        могут насладиться приятной атмосферой, вкусной едой и отличным сервисом. Кондитерская открыта для всех желающих,
+        и мы будем рады видеть вас в числе наших гостей!</p>
+    <img src="{% static 'image/start_background.svg' %}" alt="Изображены кондитерские изделия">
+</div>
+
+<div class="contacts">
+    <h2 class="contacts__headline">Контакты</h2>
+    <div class="relations">
+        <ul class="relations__list">
+            <li class="relations__item">
+                <a class="relations__link" href="{% url 'index' %}">
+                    <img class="relations__image" src="{% static 'image/vk.svg' %}">
+                    vk.com/sweetshop_brioche
+                </a>
+            </li>
+            <li class="relations__item">
+                <a class="relations__link" href="{% url 'index' %}">
+                    <img class="relations__image" src="{% static 'image/telegram.svg' %}">
+                    t.me/sweetshop_brioche
+                </a>
+            </li>
+            <li class="relations__item">
+                <a class="relations__link" href="{% url 'index' %}">
+                    <img class="relations__image" src="{% static 'image/telephone.svg' %}">
+                    +7 (123) 456-78-90
+                </a>
+            </li>
+            <li class="relations__item">
+                <a class="relations__link" href="{% url 'index' %}">
+                    <img class="relations__image" src="{% static 'image/mail.svg' %}">
+                    sweetshop@brioche.ru
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
