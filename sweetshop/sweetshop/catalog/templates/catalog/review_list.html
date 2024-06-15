@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="reviews">
+    <h2 class="reviews__headline">Отзывы</h2>
+
+    {% if review_list %}
+    <ul class="reviews__list">
+        {% for review in review_list %}
+        <li class="reviews__item">
+            <a href="{{ review.get_absolute_url }}" class="reviews__link">
+                <div class="reviews__cake-wrap">
+                    <img src="{{ review.image_id.path }}" alt="{{ review.image_id.alt }}" class="reviews__image">
+                    <p class="reviews__text">{{ review.cake_id.title }}</p>
+                    <p class="reviews__text">{{ review.created_at }}</p>
+                </div>
+                <div class="reviews__review-wrap">
+                    <p class="reviews__text">{{ review.client_id.last_name }} {{ review.client_id.first_name }}</p>
+                    <p class="reviews__text">{{ review.review }}</p>
+                </div>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Пока отзывов нет. Вы можете быть первым!</p>
+    {% endif %}
+</div>
+
+{% endblock %}

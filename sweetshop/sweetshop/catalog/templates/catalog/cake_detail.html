@@ -1,0 +1,37 @@
+{% extends "base_generic.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="cake">
+    <img src="{{ cake.image_id.path }}" alt="{{ cake.image_id.alt }}" class="cake__image">
+    <div class="cake__descrip-wrap">
+        <h1 class="cake__headline">{{ cake.title }}</h1>
+        <p class="cake__text">{{ cake.weight }}</p>
+        <p class="cake__text">{{ cake.description }}</p>
+        <p class="cake__text">{{ cake.price }}</p>
+        <button class="cake__button">Добавить</button>
+    </div>
+</div>
+
+<div class="reviews">
+    <h2 class="reviews__headline">Отзывы на {{ cake.title }}</h2>
+
+    {% if cake.review_set %}
+    <ul class="reviews__list">
+        {% for review in cake.review_set.all %}
+        <li class="reviews__item">
+            <a href="{{ review.get_absolute_url }}" class="reviews__link">
+                <p class="reviews__text">{{ review.client_id.last_name }} {{ review.client_id.first_name }}</p>
+                <p class="reviews__text">{{ review.created_at }}</p>
+                <p class="reviews__text">{{ review.review }}</p>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>На этот торт ещё нет отзывов. Вы можете быть первым!</p>
+    {% endif %}
+</div>
+
+{% endblock %}

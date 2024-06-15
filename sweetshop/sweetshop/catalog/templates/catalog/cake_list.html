@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="begin">
+    <h1 class="begin__headline">Дессерты</h1>
+</div>
+
+<div class="cakes">
+    {% if cake_list %}
+    <ul class="cakes__list">
+        {% for cake in cake_list %}
+        <li class="cakes__item">
+            <a href="{{ cake.get_absolute_url }}" class="cakes__link">
+                <div class="cakes__image-wrap">
+                    <img src="{{ cake.image_id.path }}" alt="{{ cake.image_id.alt }}" class="cakes__image">
+                </div>
+                <p class="cakes__text">{{ cake.title }}</p>
+                <p class="cakes__text">{{ cake.weight }}</p>
+                <p class="cakes__text">{{ cake.price }}</p>
+                <button class="cakes__button">Добавить</button>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Извините, тортиков пока нет.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

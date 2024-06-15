@@ -3,8 +3,12 @@
 {% load static %}
 
 {% block content %}
-<div class="start">
+<div class="start background-tint">
     <h1 class="start__headline">Кондитерская "Brioche"</h1>
+    <div class="start__link-wrap">
+        <a href="" class="start__link">Заказать</a>
+        <a href="{% url 'cakes' %}" class="start__link">Ассортимент</a>
+    </div>
 </div>
 
 <div class="about">
@@ -14,7 +18,8 @@
         каждом госте. Мы предлагаем обслуживание на высшем уровне и индивидуальный подход к каждому клиенту. Наши гости
         могут насладиться приятной атмосферой, вкусной едой и отличным сервисом. Кондитерская открыта для всех желающих,
         и мы будем рады видеть вас в числе наших гостей!</p>
-    <img src="{% static 'image/start_background.svg' %}" alt="Изображены кондитерские изделия">
+    <img src="{% static 'image/about_1.svg' %}" alt="Изображены кондитерские изделия">
+    <img src="{% static 'image/about_2.svg' %}" alt="Изображены кондитерские изделия">
 </div>
 
 <div class="contacts">

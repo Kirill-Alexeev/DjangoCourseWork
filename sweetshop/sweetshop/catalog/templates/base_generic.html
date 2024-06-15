@@ -1,40 +1,43 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     {% block title %}<title>Кондитерская "Brioche"</title>{% endblock %}
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Добавление дополнительного статического CSS файла -->
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/reset.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    {% load static %}  
+    <link rel="stylesheet" href="{% static 'image/styles.css' %}" />
 </head>
 
 <body>
     <header>
         <div class="header__wrapper">
-            <div class="logo">
-                <a href="{% url 'index' %}" class="logo__link">
-                    <img src="{% static 'image/logo.svg' %}" alt="Логотип 'Brioche'" class="logo__image">
-                    Магазин-кондитерская
-                </a>
-            </div>
-            <div class="navigation">
-                <nav class="navigation__nav">
-                    <ul class="navigation__list">
-                        <li class="navigation__item">
-                            <a class="navigation__link" href="{% url 'index' %}">Домашняя</a>
-                        </li>
-                        <li class="navigation__item">
-                            <a class="navigation__link" href="{% url 'cakes' %}">Все десерты</a>
-                        </li>
-                        <li class="navigation__item">
-                            <a class="navigation__link" href="{% url 'reviews' %}">Отзывы</a>
-                        </li>
-                    </ul>
-                </nav>
+            <div class="header__left-wrap">
+                <div class="logo">
+                    <a href="{% url 'index' %}" class="logo__link">
+                        <img src="{% static 'image/logo.svg' %}" alt="Логотип 'Brioche'" class="logo__image">
+                        Магазин-кондитерская
+                    </a>
+                </div>
+                <div class="navigation">
+                    <nav class="navigation__nav">
+                        <ul class="navigation__list">
+                            <li class="navigation__item">
+                                <a class="navigation__link" href="{% url 'index' %}">Домашняя</a>
+                            </li>
+                            <li class="navigation__item">
+                                <a class="navigation__link" href="{% url 'cakes' %}">Все десерты</a>
+                            </li>
+                            <li class="navigation__item">
+                                <a class="navigation__link" href="{% url 'reviews' %}">Отзывы</a>
+                            </li>
+                            <li class="navigation__item">
+                                <a class="navigation__link" href="">Заказать</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
             <div class="contact">
                 <p class="contact__paragraf">+7 (123) 456-78-90</p>
@@ -101,17 +104,9 @@
                             <img class="relations__image" src="{% static 'image/telegram.svg' %}">
                         </a>
                     </li>
-                    <li class="relations__item">
-                        <a class="relations__link" href="{% url 'index' %}">
-                            <img class="relations__image" src="{% static 'image/telephone.svg' %}">
-                        </a>
-                    </li>
-                    <li class="relations__item">
-                        <a class="relations__link" href="{% url 'index' %}">
-                            <img class="relations__image" src="{% static 'image/mail.svg' %}">
-                        </a>
-                    </li>
                 </ul>
+                <p class="relations__item">+7 (123) 456-78-90</p>
+                <p class="relations__item">sweetshop@brioche.ru</p>
             </div>
         </div>
     </footer>

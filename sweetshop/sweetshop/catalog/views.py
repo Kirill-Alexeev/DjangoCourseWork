@@ -32,3 +32,4 @@ class ReviewListView(generic.ListView):
 class ReviewDetailView(generic.DetailView):
     model = Review
 
+
