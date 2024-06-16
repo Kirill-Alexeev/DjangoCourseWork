@@ -4,53 +4,65 @@
 
 {% block content %}
 <div class="start background-tint">
-    <h1 class="start__headline">Кондитерская "Brioche"</h1>
-    <div class="start__link-wrap">
-        <a href="" class="start__link">Заказать</a>
-        <a href="{% url 'cakes' %}" class="start__link">Ассортимент</a>
+    <div class="start__wrap">
+        <h1 class="start__headline">Кондитерская "Brioche"</h1>
+        <div class="start__link-wrap">
+            <a href="" class="start__link">Заказать</a>
+            <a href="{% url 'cakes' %}" class="start__link">Ассортимент</a>
+        </div>
     </div>
 </div>
 
 <div class="about">
-    <h2 class="about__headline">О нас</h2>
-    <p class="about__paragraf">Кондитерская — уютное заведение, где вы сможете насладиться разнообразными сладостями и
-        напитками. У нас представлен широкий ассортимент выпечки, десертов и напитков, созданных с любовью и заботой о
-        каждом госте. Мы предлагаем обслуживание на высшем уровне и индивидуальный подход к каждому клиенту. Наши гости
-        могут насладиться приятной атмосферой, вкусной едой и отличным сервисом. Кондитерская открыта для всех желающих,
-        и мы будем рады видеть вас в числе наших гостей!</p>
-    <img src="{% static 'image/about_1.svg' %}" alt="Изображены кондитерские изделия">
-    <img src="{% static 'image/about_2.svg' %}" alt="Изображены кондитерские изделия">
+    <div class="about__text-wrap">
+        <h2 class="about__headline">О нас</h2>
+        <p class="about__paragraf">Кондитерская — уютное заведение, где вы сможете насладиться разнообразными сладостями и
+            напитками. У нас представлен широкий ассортимент выпечки, десертов и напитков, созданных с любовью и заботой о
+            каждом госте. Мы предлагаем обслуживание на высшем уровне и индивидуальный подход к каждому клиенту. Наши гости
+            могут насладиться приятной атмосферой, вкусной едой и отличным сервисом. Кондитерская открыта для всех желающих,
+            и мы будем рады видеть вас в числе наших гостей!</p>
+    </div>
+    <div class="about__image-wrap">
+        <img class="about__image" src="{% static 'image/about_1.jpg' %}" alt="Изображены кондитерские изделия">
+        <img class="about__image" src="{% static 'image/about_2.jpg' %}" alt="Изображены кондитерские изделия">
+    </div>
 </div>
 
 <div class="contacts">
     <h2 class="contacts__headline">Контакты</h2>
-    <div class="relations">
-        <ul class="relations__list">
-            <li class="relations__item">
-                <a class="relations__link" href="{% url 'index' %}">
-                    <img class="relations__image" src="{% static 'image/vk.svg' %}">
-                    vk.com/sweetshop_brioche
-                </a>
-            </li>
-            <li class="relations__item">
-                <a class="relations__link" href="{% url 'index' %}">
-                    <img class="relations__image" src="{% static 'image/telegram.svg' %}">
-                    t.me/sweetshop_brioche
-                </a>
-            </li>
-            <li class="relations__item">
-                <a class="relations__link" href="{% url 'index' %}">
-                    <img class="relations__image" src="{% static 'image/telephone.svg' %}">
-                    +7 (123) 456-78-90
-                </a>
-            </li>
-            <li class="relations__item">
-                <a class="relations__link" href="{% url 'index' %}">
-                    <img class="relations__image" src="{% static 'image/mail.svg' %}">
-                    sweetshop@brioche.ru
-                </a>
-            </li>
-        </ul>
+    <div class="contacts__bottom-wrap">
+        <div class="contacts__text-wrap">
+            <p class="contacts__text">Время работы:<br>ПН-ПТ: 9:00-20:00<br>СБ-ВС: 10:00-18:00</p>
+            <p class="contacts__text">Адрес:<br>г. Москва, ул. Сладкая, д. 9</p>
+        </div>
+        <div class="relations">
+            <ul class="relations__list">
+                <li class="relations__item">
+                    <a class="relations__link" href="{% url 'index' %}">
+                        <img class="relations__image" src="{% static 'image/vk.svg' %}">
+                        vk.com/sweetshop_brioche
+                    </a>
+                </li>
+                <li class="relations__item">
+                    <a class="relations__link" href="{% url 'index' %}">
+                        <img class="relations__image" src="{% static 'image/telegram.svg' %}">
+                        t.me/sweetshop_brioche
+                    </a>
+                </li>
+                <li class="relations__item">
+                    <a class="relations__link" href="{% url 'index' %}">
+                        <img class="relations__image" src="{% static 'image/telephone.svg' %}">
+                        +7 (123) 456-78-90
+                    </a>
+                </li>
+                <li class="relations__item">
+                    <a class="relations__link" href="{% url 'index' %}">
+                        <img class="relations__image" src="{% static 'image/mail.svg' %}">
+                        sweetshop@brioche.ru
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 

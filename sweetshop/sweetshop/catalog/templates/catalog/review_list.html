@@ -10,9 +10,9 @@
     <ul class="reviews__list">
         {% for review in review_list %}
         <li class="reviews__item">
-            <a href="{{ review.get_absolute_url }}" class="reviews__link">
+            <a href="{{ review.get_absolute_url }}" class="reviews__link reviews__horyzontal">
                 <div class="reviews__cake-wrap">
-                    <img src="{{ review.image_id.path }}" alt="{{ review.image_id.alt }}" class="reviews__image">
+                    <img src="{% get_static_prefix %}{{ review.image_id.path }}" alt="{{ review.image_id.alt }}" class="reviews__image">
                     <p class="reviews__text">{{ review.cake_id.title }}</p>
                     <p class="reviews__text">{{ review.created_at }}</p>
                 </div>

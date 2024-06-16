@@ -58,7 +58,7 @@
                         <a class="pagination__link" href="{{ request.path }}?page={{ page_obj.previous_page_number }}">Предыдущая</a>
                         {% endif %}
                         <p class="pagination__current">
-                            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+                            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
                         </p>
                         {% if page_obj.has_next %}
                         <a class="pagination__link" href="{{ request.path }}?page={{ page_obj.next_page_number }}">Следующая</a>
@@ -72,35 +72,40 @@
         
     <footer>
         <div class="footer__wrapper">
-            <div class="logo">
-                <a href="{% url 'index' %}" class="logo__link">
-                    <img src="{% static 'image/logo.svg' %}" alt="Логотип 'Brioche'" class="logo__image">
-                </a>
+            <div class="header__left-wrap">
+                <div class="logo">
+                    <a href="{% url 'index' %}" class="logo__link">
+                        <img src="{% static 'image/logo.svg' %}" alt="Логотип 'Brioche'" class="logo__image">
+                    </a>
+                </div>
+                <div class="navigation">
+                    {% block sidebar %}
+                    <ul class="navigation__list footer__list">
+                        <li class="navigation__item">
+                            <a class="navigation__link" href="{% url 'index' %}">Домашняя</a>
+                        </li>
+                        <li class="navigation__item">
+                            <a class="navigation__link" href="{% url 'cakes' %}">Все десерты</a>
+                        </li>
+                        <li class="navigation__item">
+                            <a class="navigation__link" href="{% url 'reviews' %}">Отзывы</a>
+                        </li>
+                        <li class="navigation__item">
+                            <a class="navigation__link" href="">Заказать</a>
+                        </li>
+                    </ul>
+                    {% endblock %}
+                </div>
             </div>
-            <div class="navigation">
-                {% block sidebar %}
-                <ul class="navigation__list">
-                    <li class="navigation__item">
-                        <a class="navigation__link" href="{% url 'index' %}">Домашняя</a>
-                    </li>
-                    <li class="navigation__item">
-                        <a class="navigation__link" href="{% url 'cakes' %}">Все десерты</a>
-                    </li>
-                    <li class="navigation__item">
-                        <a class="navigation__link" href="{% url 'reviews' %}">Отзывы</a>
-                    </li>
-                </ul>
-                {% endblock %}
-            </div>
-            <div class="relations">
-                <ul class="relations__list">
+            <div class="relations footer__relations">
+                <ul class="relations__list footer__link-list">
                     <li class="relations__item">
-                        <a class="relations__link" href="{% url 'index' %}">
+                        <a class="relations__link footer__link" href="{% url 'index' %}">
                             <img class="relations__image" src="{% static 'image/vk.svg' %}">
                         </a>
                     </li>
                     <li class="relations__item">
-                        <a class="relations__link" href="{% url 'index' %}">
+                        <a class="relations__link footer__link" href="{% url 'index' %}">
                             <img class="relations__image" src="{% static 'image/telegram.svg' %}">
                         </a>
                     </li>

@@ -4,13 +4,15 @@
 
 {% block content %}
 <div class="cake">
-    <img src="{{ cake.image_id.path }}" alt="{{ cake.image_id.alt }}" class="cake__image">
+    <img src="{% get_static_prefix %}{{ cake.image_id.path }}" alt="{{ cake.image_id.alt }}" class="cake__image">
     <div class="cake__descrip-wrap">
         <h1 class="cake__headline">{{ cake.title }}</h1>
-        <p class="cake__text">{{ cake.weight }}</p>
+        <p class="cake__text">{{ cake.weight }}г</p>
         <p class="cake__text">{{ cake.description }}</p>
-        <p class="cake__text">{{ cake.price }}</p>
-        <button class="cake__button">Добавить</button>
+        <div class="cake__bottom-wrap">
+            <p class="cake__price">{{ cake.price }}₽</p>
+            <button class="cake__button">Добавить</button>
+        </div>
     </div>
 </div>
 
@@ -30,7 +32,7 @@
         {% endfor %}
     </ul>
     {% else %}
-    <p>На этот торт ещё нет отзывов. Вы можете быть первым!</p>
+    <p class="reviews__empty">На этот торт ещё нет отзывов. Вы можете быть первым!</p>
     {% endif %}
 </div>
 
