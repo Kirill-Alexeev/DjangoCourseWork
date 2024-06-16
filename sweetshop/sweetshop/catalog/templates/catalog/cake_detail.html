@@ -23,11 +23,9 @@
     <ul class="reviews__list">
         {% for review in cake.review_set.all %}
         <li class="reviews__item">
-            <a href="{{ review.get_absolute_url }}" class="reviews__link">
-                <p class="reviews__text">{{ review.client_id.last_name }} {{ review.client_id.first_name }}</p>
-                <p class="reviews__text">{{ review.created_at }}</p>
-                <p class="reviews__text">{{ review.review }}</p>
-            </a>
+            <p class="reviews__text">{{ review.client_id.last_name }} {{ review.client_id.first_name }}</p>
+            <p class="reviews__text">{{ review.created_at }}</p>
+            <p class="reviews__text">{{ review.review }}</p>
         </li>
         {% endfor %}
     </ul>

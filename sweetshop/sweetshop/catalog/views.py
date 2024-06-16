@@ -38,7 +38,7 @@ class ReviewDetailView(generic.DetailView):
     model = Review
 
 
-# Регистрация
+# Регистрация пользователя
 
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
@@ -52,24 +52,21 @@ class RegisterUser(CreateView):
 
 # Отзывы
 
-class ReviewCreate(PermissionRequiredMixin, CreateView):
+class ReviewCreate(CreateView):
     model = Review
-    fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death']
-    initial = {'date_of_death': '11/11/2023'}
-    permission_required = 'catalog.add_review'
+    fields = ['client_id', 'cake_id', 'image_id', 'review', 'created_at']
+    success_url = reverse_lazy('reviews')
 
 
-class ReviewUpdate(PermissionRequiredMixin, UpdateView):
+class ReviewUpdate( UpdateView):
     model = Review
-    # Not recommended (potential security issue if more fields added)
-    fields = '__all__'
-    permission_required = 'catalog.change_review'
+    fields = ['client_id', 'cake_id', 'image_id', 'review']
+    success_url = reverse_lazy('reviews')
 
 
-class ReviewDelete(PermissionRequiredMixin, DeleteView):
+class ReviewDelete(DeleteView):
     model = Review
     success_url = reverse_lazy('reviews')
-    permission_required = 'catalog.delete_review'
 
     def form_valid(self, form):
         try:
@@ -92,7 +89,6 @@ class OrderCreate(PermissionRequiredMixin, CreateView):
 
 class OrderUpdate(PermissionRequiredMixin, UpdateView):
     model = Order
-    # Not recommended (potential security issue if more fields added)
     fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death']
     permission_required = 'catalog.change_order'
 

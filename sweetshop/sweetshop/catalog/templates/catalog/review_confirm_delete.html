@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="login">
+    <h1 class="login__headline">Удалить отзыв</h1>
+
+    <p>Вы уверены что хотите удалить отзыв?</p>
+
+    <form action="" method="POST">
+    {% csrf_token %}
+    <input class="form__input" type="submit" action="" value="Да, удалить">
+    </form>
+</div>
+{% endblock %}
