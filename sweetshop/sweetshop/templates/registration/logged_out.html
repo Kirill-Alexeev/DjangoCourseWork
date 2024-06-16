@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="login">
+    <p class="table__label">Вы успешно вышли!</p>  
+
+
+    <a class="pagination__link" href="{% url 'login'%}">Нажмите чтобы войти снова.</a>
+</div>
+
+{% endblock %}

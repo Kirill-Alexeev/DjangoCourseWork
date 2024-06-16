@@ -8,4 +8,19 @@ urlpatterns = [
     re_path(r"^cake/(?P<pk>\d+)$", views.CakeDetailView.as_view(), name="cake-detail"),
     re_path(r"^reviews/$", views.ReviewListView.as_view(), name="reviews"),
     re_path(r"^review/(?P<pk>\d+)$", views.ReviewDetailView.as_view(), name="review-detail"),
+    path('register/', views.RegisterUser.as_view(), name='register'),
+]
+
+# Добавляет URLConf для создания, редактирования и удаления отзыва
+urlpatterns += [
+    path('review/create/', views.ReviewCreate.as_view(), name='review-create'),
+    path('review/<int:pk>/update/', views.ReviewUpdate.as_view(), name='review-update'),
+    path('review/<int:pk>/delete/', views.ReviewDelete.as_view(), name='review-delete'),
+]
+
+# Добавляет URLConf для создания, редактирования и удаления заказа
+urlpatterns += [
+    path('order/create/', views.OrderCreate.as_view(), name='order-create'),
+    path('order/<int:pk>/update/', views.OrderUpdate.as_view(), name='order-update'),
+    path('order/<int:pk>/delete/', views.OrderDelete.as_view(), name='order-delete'),
 ]

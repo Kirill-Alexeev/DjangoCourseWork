@@ -1,0 +1,42 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div class="login">
+    <h1 class="login__headline">Вход</h1>
+    
+    {% if form.errors %}
+      <p class="reviews__empty">Ваши имя пользователя и пароль не совпадают. Пожалуйста, попробуйте снова.</p>
+    {% endif %}
+    
+    {% if next %}
+      {% if user.is_authenticated %}
+        <p class="reviews__empty">У вашего аккаунта нет доступа к этой странице!</p>
+      {% else %}
+        <p class="reviews__empty">Пожалуйста, войдите чтобы увидеть эту страницу.</p>
+      {% endif %}
+    {% endif %}
+    
+    <form class="login__form" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table class="table">
+            <tr class="table__row">
+                <td class="table__label">Имя пользователя:</td>
+                <td class="table__input">{{ form.username }}</td>
+            </tr>
+            
+            <tr class="table__row">
+                <td class="table__label">Пароль:</td>
+                <td class="table__input">{{ form.password }}</td>
+            </tr>
+        </table>
+        
+        <input class="form__submit" type="submit" value="Войти" />
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+    
+    {# Assumes you setup the password_reset view in your URLconf #}
+    <a class="pagination__link" href="{% url 'password_reset' %}">Не помните пароль?</a>
+</div>
+
+{% endblock %}

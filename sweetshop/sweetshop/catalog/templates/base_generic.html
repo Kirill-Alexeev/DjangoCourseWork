@@ -32,6 +32,22 @@
                             <li class="navigation__item">
                                 <a class="navigation__link" href="{% url 'reviews' %}">Отзывы</a>
                             </li>
+                            {% if user.is_authenticated %}
+                            <li class="navigation__item">
+                                {{ user.get_username }}
+                                <form action="{% url 'logout' %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="navigation__link">Выйти</button>
+                                </form>
+                            </li>
+                            {% else %}
+                            <li class="navigation__item">
+                                <a class="navigation__link" href="{% url 'register'%}">Зарегистрироваться</a>
+                            </li>
+                            <li class="navigation__item">
+                                <a class="navigation__link" href="{% url 'login'%}">Войти</a>
+                            </li>
+                            {% endif %}
                             <li class="navigation__item">
                                 <a class="navigation__link" href="">Заказать</a>
                             </li>
