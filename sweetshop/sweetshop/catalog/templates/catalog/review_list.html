@@ -22,10 +22,11 @@
             <div class="reviews__review-wrap">
                 <p class="reviews__text">{{ review.client_id.last_name }} {{ review.client_id.first_name }}</p>
                 <p class="reviews__text">{{ review.review }}</p>
-            </div>
-            <div class="reviews__link-wrap">
-                <a href="{% url 'review-update' review.id %}" class="reviews__link">Редактировать</a>
-                <a href="{% url 'review-delete' review.id %}" class="reviews__link delete">Удалить</a>
+            
+                <div class="reviews__link-wrap">
+                    <a href="{% url 'review-update' review.id %}" class="reviews__link">Редактировать</a>
+                    <a href="{% url 'review-delete' review.id %}" class="reviews__link delete">Удалить</a>
+                </div>
             </div>
         </li>
         {% endfor %}

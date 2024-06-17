@@ -1,11 +1,14 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<form class="login__form" action="" method="post">
-    {% csrf_token %}
-    <table class="table">
-    {{ form.as_table }}
-    </table>
-    <input class="form__submit" type="submit" value="Submit">
-</form>
+<div class="login">
+    <h1 class="login__headline">Оставить отзыв</h1>
+    <form class="login__form" action="" method="post">
+        {% csrf_token %}
+        <table class="table">
+        {{ form.as_table }}
+        </table>
+        <input class="form__submit" type="submit" value="Сохранить">
+    </form>
+</div>
 {% endblock %}
