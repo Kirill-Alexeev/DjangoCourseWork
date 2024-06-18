@@ -1,0 +1,39 @@
+{% extends "base_generic.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="cart">
+    <div class="cart__left-wrap">
+        <h1 class="login__headline">Ваша корзина</h1>
+        {% if cart.items %}
+            <ul class="cart__list">
+                {% for item in cart.items %}
+                    <li class="cart__item">{{ item.name }} - {{ item.price }}₽</li>
+                {% endfor %}
+            </ul>
+            <p class="cake__text">Общая стоимость: {{ cart.total_price }}₽</p>
+        {% else %}
+            <p class="cake__text">Ваша корзина пуста</p>
+        {% endif %}
+        <a class="cake__button" href="{% url 'cakes' %}">Продолжить покупки</a>
+    </div>
+
+    <div class="cart__right-wrap">
+        <h2 class="login__headline">Оформление заказа</h2>
+        <form class="login__form" method="post">
+            {% csrf_token %}
+            <fieldset>
+                <legend class="cake__text">Детали заказа</legend>
+                {% for f in order_form %}
+                <p class="form__reg"><label class="table__label label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+                <div>{{ f.errors }}</div>
+                {% endfor %}
+            </fieldset>
+            <button class="cake__button" type="submit">Оформить заказ</button>
+        </form>
+    </div>
+        
+</div>
+
+{% endblock %}

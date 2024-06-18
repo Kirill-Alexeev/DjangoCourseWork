@@ -17,9 +17,15 @@ urlpatterns += [
     path('review/<int:pk>/delete/', views.ReviewDelete.as_view(), name='review-delete'),
 ]
 
-# Добавляет URLConf для создания, редактирования и удаления заказа
 urlpatterns += [
-    path('order/create/', views.OrderCreate.as_view(), name='order-create'),
-    path('order/<int:pk>/update/', views.OrderUpdate.as_view(), name='order-update'),
-    path('order/<int:pk>/delete/', views.OrderDelete.as_view(), name='order-delete'),
+    path('cart/', views.cart_view, name='cart_view'),
+    path('cart/<int:id>/', views.cart, name='cart'),
+    path('order_success/', views.order_success, name='order_success'),
 ]
+
+# Добавляет URLConf для создания, редактирования и удаления заказа
+# urlpatterns += [
+#     path('order/create/', views.OrderCreate.as_view(), name='order-create'),
+#     path('order/<int:pk>/update/', views.OrderUpdate.as_view(), name='order-update'),
+#     path('order/<int:pk>/delete/', views.OrderDelete.as_view(), name='order-delete'),
+# ]

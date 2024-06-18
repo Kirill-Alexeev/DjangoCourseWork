@@ -1,7 +1,5 @@
 {% extends "base_generic.html" %}
 
-
-
 {% block content %}
 <div class="begin">
     <h1 class="begin__headline">Десерты</h1>
@@ -21,7 +19,7 @@
                 <p class="cakes__text">{{ cake.weight }}г</p>
                 <div class="cakes__bottom-wrap">
                     <p class="cakes__text">{{ cake.price }}₽</p>
-                    <button class="cakes__button">Добавить</button>
+                    <a href="{% url 'cart' cake.id %}" class="cake__button">Добавить</a>
                 </div>
             </a>
         </li>

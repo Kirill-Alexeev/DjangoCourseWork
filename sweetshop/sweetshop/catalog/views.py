@@ -1,12 +1,13 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
+from django.contrib.auth.decorators import login_required
 
-from .forms import RegisterUserForm
-from .models import Cake, Ingredient, Image, Order, Review, Client
+from django.utils.dateparse import parse_date
+from .forms import OrderForm, RegisterUserForm
+from .models import Cake, Order, Review
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.contrib.auth.mixins import PermissionRequiredMixin
 
 # Create your views here.
 
@@ -31,7 +32,7 @@ class CakeDetailView(generic.DetailView):
 
 class ReviewListView(generic.ListView):
     model = Review
-    paginate_by = 9
+    paginate_by = 7
 
 
 class ReviewDetailView(generic.DetailView):
@@ -54,13 +55,13 @@ class RegisterUser(CreateView):
 
 class ReviewCreate(CreateView):
     model = Review
-    fields = ['client_id', 'cake_id', 'image_id', 'review', 'created_at']
+    fields = ['user_id', 'cake_id', 'image_id', 'review', 'created_at']
     success_url = reverse_lazy('reviews')
 
 
 class ReviewUpdate( UpdateView):
     model = Review
-    fields = ['client_id', 'cake_id', 'image_id', 'review']
+    fields = ['user_id', 'cake_id', 'image_id', 'review']
     success_url = reverse_lazy('reviews')
 
 
@@ -78,31 +79,56 @@ class ReviewDelete(DeleteView):
             )
         
 
-# Заказы
+# Корзина и оформление заказа
 
-class OrderCreate(PermissionRequiredMixin, CreateView):
-    model = Order
-    fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death']
-    initial = {'date_of_death': '11/11/2023'}
-    permission_required = 'catalog.add_order'
+def cart(request, id):
+    if 'cart' not in request.session:
+        request.session['cart'] = {'items': [], 'total_price': 0}
+
+    cake = get_object_or_404(Cake, id=id)
+
+    if 'items' not in request.session['cart']:
+        request.session['cart']['items'] = []
+    if 'total_price' not in request.session['cart']:
+        request.session['cart']['total_price'] = 0
+
+    request.session['cart']['items'].append({
+        'id': cake.id,
+        'name': cake.title,
+        'price': float(cake.price)
+    })
+
+    request.session['cart']['total_price'] += float(cake.price)
+    request.session.modified = True  # Обязательно сохраняем изменения в сессии
+
+    return HttpResponseRedirect(reverse('cart_view'))
 
 
-class OrderUpdate(PermissionRequiredMixin, UpdateView):
-    model = Order
-    fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death']
-    permission_required = 'catalog.change_order'
+@login_required
+def cart_view(request):
+    cart = request.session.get('cart', {'items': [], 'total_price': 0})
 
+    if request.method == 'POST':
+        order_form = OrderForm(request.POST)
+        if order_form.is_valid():
+            order = order_form.save(commit=False)
+            order.user_id = request.user
+            order.cost = cart['total_price']
 
-class OrderDelete(PermissionRequiredMixin, DeleteView):
-    model = Order
-    success_url = reverse_lazy('orders')
-    permission_required = 'catalog.delete_order'
+            order.save()
 
-    def form_valid(self, form):
-        try:
-            self.object.delete()
-            return HttpResponseRedirect(self.success_url)
-        except Exception as e:
-            return HttpResponseRedirect(
-                reverse("order-delete", kwargs={"pk": self.object.pk})
-            )
+            # Очистка корзины после оформления заказа
+            request.session['cart'] = {'items': [], 'total_price': 0}
+
+            return redirect('order_success')
+    else:
+        order_form = OrderForm()
+
+    return render(request, 'catalog/cart.html', {
+        'cart': cart,
+        'order_form': order_form
+    })
+        
+
+def order_success(request):
+    return render(request, 'catalog/order_success.html')

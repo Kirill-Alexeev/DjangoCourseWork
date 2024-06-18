@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="login">
+    <h1 class="login__headline">Ваш заказ успешно оформлен!</h1>
+    <a class="cake__button" href="{% url 'index' %}">Вернуться на главную</a>
+</div>
+
+{% endblock %}

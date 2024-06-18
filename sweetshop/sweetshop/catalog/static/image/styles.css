@@ -48,6 +48,7 @@ table {
 }
 
 tbody {
+    width: 400px;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -57,7 +58,6 @@ tbody {
 }
 
 tr {
-    width: 100%;
     border-radius: 15px;
     display: flex;
     justify-content: space-between;
@@ -73,7 +73,7 @@ select,
 textarea {
     font-size: 2rem;
     padding: 0.5rem;
-    width: 350px;
+    width: 300px;
 }
 
 
@@ -371,7 +371,7 @@ footer {
 
 .cakes__list {
     display: grid;
-    grid-template: repeat(auto-fit, minmax(300px, 450px))/repeat(3, 300px);
+    grid-template: repeat(auto-fit, minmax(300px, 450px))/repeat(3, 400px);
     column-gap: 100px;
     row-gap: 30px;
 }
@@ -383,7 +383,6 @@ footer {
 }
 
 .cakes__link {
-    height: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -394,7 +393,7 @@ footer {
 }
 
 .cakes__image {
-    width: 300px;
+    width: 400px;
     height: 300px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
@@ -422,6 +421,7 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex: 1;
 }
 
 .cakes__button {
@@ -655,4 +655,44 @@ footer {
 
 .delete {
     background-color: var(--delete-color);
+}
+
+.cart {
+    width: 1000px;
+    margin: 30px auto 70px;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.cart__left-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.cart__right-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.cart__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cart__item {
+    font-size: 2rem;
+}
+
+.cart__link {
+    font-size: 2rem;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }

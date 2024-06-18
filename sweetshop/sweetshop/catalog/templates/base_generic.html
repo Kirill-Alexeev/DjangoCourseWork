@@ -49,7 +49,7 @@
                             </li>
                             {% endif %}
                             <li class="navigation__item">
-                                <a class="navigation__link" href="">Заказать</a>
+                                <a class="navigation__link" href="{% url 'cart_view' %}">Заказать</a>
                             </li>
                         </ul>
                     </nav>
@@ -107,7 +107,7 @@
                             <a class="navigation__link" href="{% url 'reviews' %}">Отзывы</a>
                         </li>
                         <li class="navigation__item">
-                            <a class="navigation__link" href="">Заказать</a>
+                            <a class="navigation__link" href="{% url 'cart_view' %}">Заказать</a>
                         </li>
                     </ul>
                     {% endblock %}

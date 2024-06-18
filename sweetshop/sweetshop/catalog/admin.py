@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Cake, Order, Client, Review, Image, Ingredient
+from .models import Cake, Order, Review, Image, Ingredient
 
 # Register your models here.
 
@@ -37,37 +37,25 @@ class CakeAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'client_id', 'execution_date', 'status', 'comment', 'cost', 'created_at')
-    list_display_links = ('id', 'client_id')
-    fields = ['id', 'client_id', 'execution_date', 'status', 'comment', 'cost', 'cake', ('created_at', 'updated_at')]
+    list_display = ('id', 'user_id', 'execution_date', 'status', 'comment', 'delivery_address', 'cost', 'created_at')
+    list_display_links = ('id', 'user_id')
+    fields = ['id', 'user_id', 'execution_date', 'status', 'comment', 'delivery_address', 'cost', 'cake', ('created_at', 'updated_at')]
     readonly_fields = ('id',)
     list_filter = ('status', 'execution_date')
     date_hierarchy = 'created_at'
     filter_horizontal = ('cake',)
-    raw_id_fields = ('client_id',)
+    raw_id_fields = ('user_id',)
     search_fields = ('id',)
     list_per_page = 10
 
 
-@admin.register(Client)
-class ClientAdmin(admin.ModelAdmin):
-    list_display = ('last_name', 'first_name', 'middle_name', 'phone_number', 'email', 'date_of_birth', 'created_at')
-    list_display_links = ('last_name', 'first_name', 'middle_name')
-    fields = ['id', 'first_name', 'middle_name', 'last_name', 'phone_number', 'email', 'date_of_birth', ('created_at', 'updated_at')]
-    readonly_fields = ('id',)
-    inlines = [OrderInline]
-    date_hierarchy = 'created_at'
-    search_fields = ('last_name', 'first_name', 'middle_name')
-    list_per_page = 20
-
-
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('review', 'client_id', 'cake_id', 'image_id', 'created_at')
-    fields = ['id', 'client_id', 'cake_id', 'image_id', 'review', 'created_at']
+    list_display = ('review', 'user_id', 'cake_id', 'image_id', 'created_at')
+    fields = ['id', 'user_id', 'cake_id', 'image_id', 'review', 'created_at']
     readonly_fields = ('id',)
     date_hierarchy = 'created_at'
-    raw_id_fields = ('client_id', 'cake_id', 'image_id')
+    raw_id_fields = ('user_id', 'cake_id', 'image_id')
     search_fields = ('review',)
     list_per_page = 5
 

@@ -11,7 +11,7 @@
         <p class="cake__text">{{ cake.description }}</p>
         <div class="cake__bottom-wrap">
             <p class="cake__price">{{ cake.price }}₽</p>
-            <button class="cake__button">Добавить</button>
+            <a href="{% url 'cart'  cake.id %}" class="cake__button">Добавить</a>
         </div>
     </div>
 </div>
