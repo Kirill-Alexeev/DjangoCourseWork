@@ -1,3 +1,4 @@
+import datetime
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
@@ -114,6 +115,7 @@ def cart_view(request):
             order = order_form.save(commit=False)
             order.user_id = request.user
             order.cost = cart['total_price']
+            order.created_at = datetime.date.today()
 
             order.save()
 
